@@ -9,6 +9,10 @@ public class Amigo {
         this.email = emailAmigo;
     }
 
+    public Amigo() {
+        this("","");
+    }
+
     public String getNome() {
         return nome;
     }

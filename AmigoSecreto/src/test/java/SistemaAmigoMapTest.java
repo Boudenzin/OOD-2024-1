@@ -19,14 +19,10 @@ public class SistemaAmigoMapTest {
 
     @Test
     void testSistemaAmigo() {
-        try {
-            assertTrue(sistemaMap.pesquisaTodasAsMensagens().isEmpty());
-
-        } catch (ListaVaziaException e) {
-            fail("Deveria falhar");
-        }
-            assertThrows(AmigoInexistenteException.class,
-                    () -> sistemaMap.pesquisaAmigo("romildo@gmail.com"));
+        assertThrows(ListaVaziaException.class,
+                ()  -> sistemaMap.pesquisaTodasAsMensagens().isEmpty());
+        assertThrows(AmigoInexistenteException.class,
+                () -> sistemaMap.pesquisaAmigo("romildo@gmail.com"));
     }
 
     @Test
@@ -51,21 +47,24 @@ public class SistemaAmigoMapTest {
 
     @Test
     void testEnviarMensagemParaTodos() {
-        try {
-            assertTrue(sistemaMap.pesquisaTodasAsMensagens().isEmpty());
+            assertThrows(ListaVaziaException.class,
+                    () -> sistemaMap.pesquisaTodasAsMensagens().isEmpty());
             sistemaMap.enviarMensagemParaTodos("texto", "romildo@yahoo.com.br", true);
-            List<Mensagem> mensagensAchadas = sistemaMap.pesquisaTodasAsMensagens();
-            assertEquals(1, mensagensAchadas.size());
-            assertEquals("romildo@yahoo.com.br", mensagensAchadas.getFirst().getEmailRemetente());
-        } catch (ListaVaziaException e) {
-            fail("Não deveria lançar exceção");
+            try {
+                List<Mensagem> mensagensAchadas = sistemaMap.pesquisaTodasAsMensagens();
+                assertEquals(1, mensagensAchadas.size());
+                assertEquals("romildo@yahoo.com.br", mensagensAchadas.getFirst().getEmailRemetente());
+            } catch (ListaVaziaException e) {
+                fail("Não deveria lançar exceção");
+
         }
     }
 
     @Test
     void testEnviarMensagemParaAlguem() {
         try {
-            assertTrue(sistemaMap.pesquisaTodasAsMensagens().isEmpty());
+            assertThrows(ListaVaziaException.class,
+                    () -> sistemaMap.pesquisaTodasAsMensagens().isEmpty());
             sistemaMap.enviarMensagemParaAlguem("texto", "romildo@yahoo.com.br", "kaua@gmail.com", true);
             List<Mensagem> mensagensAchadas = sistemaMap.pesquisaTodasAsMensagens();
             assertEquals(1, mensagensAchadas.size());
@@ -78,10 +77,12 @@ public class SistemaAmigoMapTest {
 
     @Test
     void testPesquisaMensagensAnonimas() {
+        assertThrows(ListaVaziaException.class,
+                () -> sistemaMap.pesquisaTodasAsMensagens().isEmpty());
+        assertThrows(ListaVaziaException.class,
+                () -> sistemaMap.pesquisaMensagensAnonimas().isEmpty());
         try {
-            assertTrue(sistemaMap.pesquisaTodasAsMensagens().isEmpty());
             sistemaMap.enviarMensagemParaAlguem("texto 1", "romildo@yahoo.com.br", "gus@dcx.ufpb.br", false);
-            assertTrue(sistemaMap.pesquisaMensagensAnonimas().isEmpty());
             sistemaMap.enviarMensagemParaAlguem("texto 2", "romildo@yahoo.com.br", "gus@dcx.ufpb.br", true);
             assertEquals(1, sistemaMap.pesquisaMensagensAnonimas().size());
         } catch (ListaVaziaException e) {
@@ -91,8 +92,9 @@ public class SistemaAmigoMapTest {
 
     @Test
     void testPesquisaTodasAsMensagens() {
-        try {
-            assertTrue(sistemaMap.pesquisaTodasAsMensagens().isEmpty());
+            assertThrows(ListaVaziaException.class,
+                    () -> sistemaMap.pesquisaTodasAsMensagens().isEmpty());
+            try {
             sistemaMap.enviarMensagemParaAlguem("texto 1", "romildo@gmail.com", "alex@gmail.com", false);
             assertEquals(1, sistemaMap.pesquisaTodasAsMensagens().size());
             sistemaMap.enviarMensagemParaAlguem("texto 2", "romildo@gmail.com", "alex@gmail.com", true);
@@ -104,7 +106,7 @@ public class SistemaAmigoMapTest {
 
     @Test
     void testPesquisaAmigoEConfiguraAmigoSecretoDe() {
-        assertThrows(AmigoNaoSorteadoException.class,
+        assertThrows(AmigoInexistenteException.class,
                 ()-> sistemaMap.pesquisaAmigoSecretoDe("ayla@dcx.ufpb.br"));
         try {
             sistemaMap.cadastraAmigo("Mizael", "mizael@gmail.com");

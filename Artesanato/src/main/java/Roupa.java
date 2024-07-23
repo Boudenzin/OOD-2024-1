@@ -10,4 +10,8 @@ public class Roupa extends ItemDeArtesanato{
         this.tipo = tipo;
         this.tamanho = tamanho;
     }
+
+    public Roupa() {
+        this(0.0, "","", "", "", "");
+    }
 }

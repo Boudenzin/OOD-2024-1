@@ -46,17 +46,19 @@ public class SistemaAmigoMap {
     }
 
     public List<Mensagem> pesquisaMensagensAnonimas() throws ListaVaziaException {
-        if (!this.mensagens.isEmpty()) {
-            List<Mensagem> mensagensAnonimas = new ArrayList<>();
-            for (Mensagem m : this.mensagens) {
-                if (m.ehAnonima()) {
-                    mensagensAnonimas.add(m);
-                }
-            }
-            return mensagens;
+        if (this.mensagens.isEmpty()) {
+            throw new ListaVaziaException("Nenhuma mensagem cadastrada/encontrada");
         }
-        throw new ListaVaziaException("Nenhuma mensagem cadastrada/encontrada");
+
+        List<Mensagem> mensagensAnonimas = new ArrayList<>();
+        for (Mensagem m : this.mensagens) {
+            if (m.ehAnonima()) {
+                mensagensAnonimas.add(m);
+            }
+        }
+        return mensagensAnonimas;
     }
+
 
     public List<Mensagem> pesquisaTodasAsMensagens() throws ListaVaziaException {
         if (!this.mensagens.isEmpty()) {

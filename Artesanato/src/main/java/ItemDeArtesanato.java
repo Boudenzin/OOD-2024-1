@@ -56,7 +56,7 @@ public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
         * if (this.preco < o.getpreco()) {return -1}
         *
         *
-        *
+        * return (int) (this.preco - o.getPreco);
         * */
     }
 }

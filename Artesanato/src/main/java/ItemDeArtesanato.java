@@ -12,6 +12,10 @@ public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
         this.code = code;
     }
 
+    public ItemDeArtesanato() {
+        this(0.0,"","");
+    }
+
     public double getPreco() {
         return preco;
     }
@@ -58,5 +62,15 @@ public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
         *
         * return (int) (this.preco - o.getPreco);
         * */
+    }
+
+    @Override
+    public String toString() {
+        return String.format("""
+                Código : %s
+                Nome : %s
+                Preço : %.2f
+                
+                """, this.code, this.nome, this.preco);
     }
 }

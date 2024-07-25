@@ -1,5 +1,8 @@
-import java.util.*;
-
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Collections;
 public class SistemaFeiraArtesanatoRioTinto implements SistemaFeiraArtesanato{
 
     private Map<String, ItemDeArtesanato> itensDeArtesanato;

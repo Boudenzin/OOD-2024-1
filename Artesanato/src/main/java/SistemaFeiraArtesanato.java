@@ -9,10 +9,9 @@ public interface SistemaFeiraArtesanato {
      *
      * Cadastra um novo item no sistema
      * @param item O item a ser adicionado
-     * @return True se não foi cadastrado ou false se já foi cadastrado
-     *
+     * @throws ItemJaExisteException se o item já foi cadastrado
      * */
-    public boolean cadastraItem(ItemDeArtesanato item);
+    public void cadastraItem(ItemDeArtesanato item) throws ItemJaExisteException, CodigoInvalidoException;
 
     /**
      * Pesquisa todos os itens cujo o nome começa com o nome de acordo com o parametro

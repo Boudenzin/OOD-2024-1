@@ -1,17 +1,29 @@
 public class Roupa extends ItemDeArtesanato{
 
     private String material;
-    private String tipo;
     private String tamanho;
 
-    public Roupa(double preco, String nome, String code, String material, String tipo, String tamanho) {
-        super(preco, nome, code);
+    public Roupa(double preco, String nome, String code, String material, String tamanho) {
+        super(preco, nome, code, TipoItem.ROUPA);
         this.material = material;
-        this.tipo = tipo;
         this.tamanho = tamanho;
     }
 
     public Roupa() {
-        this(0.0, "","", "", "", "");
+        this(0.0, "","", "", "");
+    }
+
+    public String getDescricao() {
+        return String.format("""
+        Roupa -----
+        Código : %s
+        Nome : %s
+        Preço : %.2f
+
+        """, super.getCode(), super.getNome(), super.getPreco());
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
     }
 }

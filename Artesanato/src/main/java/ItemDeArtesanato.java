@@ -1,19 +1,21 @@
 import java.util.Objects;
 
-public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
+public abstract class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
 
     private double preco;
     private String nome;
     private String code;
+    private TipoItem tipo;
 
-    public ItemDeArtesanato(double preco, String nome, String code) {
+    public ItemDeArtesanato(double preco, String nome, String code, TipoItem tipo) {
         this.preco = preco;
         this.nome = nome;
         this.code = code;
+        this.tipo = tipo;
     }
 
     public ItemDeArtesanato() {
-        this(0.0,"","");
+        this(0.0,"","", TipoItem.INDEFINIDO);
     }
 
     public double getPreco() {
@@ -38,7 +40,11 @@ public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
 
     public void setCode(String code) {
         this.code = code;
+
+
     }
+
+    public abstract String getDescricao();
 
     @Override
     public boolean equals(Object o) {
@@ -66,11 +72,6 @@ public class ItemDeArtesanato implements Comparable<ItemDeArtesanato>{
 
     @Override
     public String toString() {
-        return String.format("""
-                Código : %s
-                Nome : %s
-                Preço : %.2f
-                
-                """, this.code, this.nome, this.preco);
+        return this.getDescricao();
     }
 }
